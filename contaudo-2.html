@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 2 - criação de componentes</title>
+</head>
+
+<body>
+    <div
+        style="font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#f0f4ff 0%,#e8f0fe 100%);padding:32px 20px;box-sizing:border-box;">
+        <div
+            style="background:linear-gradient(135deg,#0d1b4b 0%,#1565c0 50%,#c62828 100%);border-radius:20px;padding:40px 36px 32px;margin-bottom:28px;box-shadow:0 12px 40px rgba(13,27,75,.45);position:relative;overflow:hidden;">
+            <div
+                style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(255,255,255,.05);border-radius:50%;">
+            </div>
+            <div
+                style="position:absolute;bottom:-30px;left:40px;width:140px;height:140px;background:rgba(255,255,255,.04);border-radius:50%;">
+            </div>
+            <div style="position:relative;z-index:1;">
+                <div styize:30px;font-weight:900;line-height:1.2;margin-bottom:10px;">
+                    Criação dos Componentes Principais<br>
+                    <span style="color:#64b5f6;">da Interface</span>
+                </div>
+
+                <div style="color:rgba(255,255,255,.75);font-size:14px;margin-top:10px;">
+                    Componentes · Instâncias · Main Component · Auto Layout · Variantes · Biblioteca de Interface
+                </div>
+
+                <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#90caf9;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">Components</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#ef9a9a;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">Instances</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#a5d6a7;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">Auto
+                        Layout</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#ffcc80;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">Variantes</span>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:24px 28px;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;"> <span
+                    style="font-size:20px;">🎯</span> <span
+                    style="color:#1a237e;font-size:16px;font-weight:800;">Objetivos da Aula</span> </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                <div
+                    style="background:#e8eaf6;border-radius:10px;padding:10px 13px;color:#283593;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+                    <span>✔</span>Compreender o conceito de componentes no Figma</div>
+                <div
+                    style="background:#e8eaf6;border-radius:10px;padding:10px 13px;color:#283593;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+                    <span>✔</span>Identificar elementos reutilizáveis em uma interface</div>
+                <div
+                    style="background:#e8eaf6;border-radius:10px;padding:10px 13px;color:#283593;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+                    <span>✔</span>Criar componentes utilizando boas práticas</div>
+                <div
+                    style="background:#e8eaf6;border-radius:10px;padding:10px 13px;color:#283593;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+                    <span>✔</span>Utilizar propriedades e variantes básicas</div>
+                <div
+                    style="background:#e8eaf6;border-radius:10px;padding:10px 13px;color:#283593;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+                    <span>✔</span>Organizar componentes em uma biblioteca simples</div>
+                <div
+                    style="background:#e8eaf6;border-radius:10px;padding:10px 13px;color:#283593;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;">
+                    <span>✔</span>Aplicar componentes na Landing Page desenvolvida anteriormente</div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#1a237e,#283593);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🔄</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Revisando as Aulas Anteriores</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:linear-gradient(135deg,#e8eaf6,#ede7f6);border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #5c6bc0;">
+                    <div style="color:#4a148c;font-size:16px;font-weight:800;margin-bottom:10px;">Nas últimas aulas
+                        aprendemos que uma interface profissional é construída em etapas.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Primeiro organizamos. Depois
+                        estruturamos. Em seguida criamos os elementos reutilizáveis.</div>
+                </div>
+
+                <div
+                    style="background:#0d1b4b;border-radius:14px;padding:24px;box-shadow:0 6px 24px rgba(13,27,75,.35);">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                        <div
+                            style="background:#1565c0;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Organização</div>
+                        <div style="color:#90a4ae;font-size:18px;font-weight:900;">↓</div>
+                        <div
+                            style="background:#4527a0;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Estrutura</div>
+                        <div style="color:#90a4ae;font-size:18px;font-weight:900;">↓</div>
+                        <div
+                            style="background:#00897b;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Elementos reutilizáveis</div>
+                        <div style="color:#90a4ae;font-size:18px;font-weight:900;">↓</div>
+                        <div
+                            style="background:#f57f17;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Projeto profissional com Componentes</div>
+                    </div>
+                </div>
+
+                <div
+                    style="background:#e3f2fd;border-radius:12px;padding:18px;border-left:5px solid #1565c0;margin-top:18px;">
+                    <div style="color:#0d47a1;font-size:14px;font-weight:800;">Nesta aula iremos transformar nossa
+                        Landing Page em um projeto profissional utilizando Componentes.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#1565c0,#0288d1);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 12px;color:white;font-weight:900;font-size:15px;">1</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Capítulo 1 — O que é um Componente?</span>
+            </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e3f2fd;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #1565c0;">
+                    <div style="color:#0d47a1;font-size:16px;font-weight:800;margin-bottom:10px;">Imagine que uma
+                        Landing Page possui cinco botões iguais.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Se cada botão for desenhado
+                        separadamente, qualquer alteração precisará ser feita cinco vezes. Agora imagine uma Landing
+                        Page com cinquenta botões. O trabalho seria enorme.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
+                    <div style="background:#ffebee;border-radius:12px;padding:18px;border-top:4px solid #e53935;">
+                        <div style="color:#b71c1c;font-size:14px;font-weight:900;margin-bottom:12px;">Sem componentes
+                        </div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">
+                            <img src="./assets/semcomponent.png" alt="">
+                            <br><br>Cada um precisa ser alterado manualmente.</div>
+                    </div>
+
+                    <div style="background:#e8f5e9;border-radius:12px;padding:18px;border-top:4px solid #388e3c;">
+                        <div style="color:#1b5e20;font-size:14px;font-weight:900;margin-bottom:12px;">Com componentes
+                        </div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">Main Component<br>
+                            <img src="./assets/component.png" alt=""><br><br>Uma única alteração atualiza todos.</div>
+                    </div>
+                </div>
+
+                <div style="background:#e0f2f1;border-radius:12px;padding:18px;border-left:5px solid #00897b;">
+                    <div style="color:#00695c;font-size:14px;font-weight:800;margin-bottom:8px;">Um componente é um
+                        elemento reutilizável que pode ser utilizado diversas vezes na interface.</div>
+                    <div style="color:#37474f;font-size:13px;line-height:1.8;">Quando alteramos o componente principal,
+                        todas as suas cópias são atualizadas automaticamente. Esse conceito reduz retrabalho, aumenta a
+                        consistência visual e facilita a manutenção do projeto.</div>
+                </div>
+
+                <div
+                    style="background:#f5f7ff;border:2px dashed #90caf9;border-radius:14px;padding:40px;text-align:center;margin-top:18px;">
+                    <img src="https://help.figma.com/hc/article_attachments/26978254394007" width="100%">
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#00897b,#26a69a);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🏢</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Componentes no Mercado</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e0f2f1;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #00897b;">
+                    <div style="color:#00695c;font-size:16px;font-weight:800;margin-bottom:10px;">Empresas dificilmente
+                        desenham cada tela do zero.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Elas possuem bibliotecas contendo
+                        centenas de componentes reutilizáveis. Essa biblioteca recebe o nome de Design System.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Botões</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Campos de texto</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Cards</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Menus</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Avatares</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Modais</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Barras de navegação</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Ícones</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#6a1b9a,#8e24aa);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">✅</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Vantagens dos Componentes</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#f3e5f5;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #8e24aa;">
+                    <div style="color:#6a1b9a;font-size:16px;font-weight:800;">Os componentes oferecem diversas
+                        vantagens. Quanto maior o projeto, maior a importância dos componentes.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#f3e5f5;border-radius:10px;padding:12px;color:#6a1b9a;font-size:12px;font-weight:800;text-align:center;">
+                        reutilização</div>
+                    <div
+                        style="background:#f3e5f5;border-radius:10px;padding:12px;color:#6a1b9a;font-size:12px;font-weight:800;text-align:center;">
+                        padronização</div>
+                    <div
+                        style="background:#f3e5f5;border-radius:10px;padding:12px;color:#6a1b9a;font-size:12px;font-weight:800;text-align:center;">
+                        rapidez</div>
+                    <div
+                        style="background:#f3e5f5;border-radius:10px;padding:12px;color:#6a1b9a;font-size:12px;font-weight:800;text-align:center;">
+                        manutenção simplificada</div>
+                    <div
+                        style="background:#f3e5f5;border-radius:10px;padding:12px;color:#6a1b9a;font-size:12px;font-weight:800;text-align:center;">
+                        trabalho colaborativo</div>
+                    <div
+                        style="background:#f3e5f5;border-radius:10px;padding:12px;color:#6a1b9a;font-size:12px;font-weight:800;text-align:center;">
+                        consistência visual</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#f57f17,#f9a825);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">📌</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Elementos que Devem Virar Componentes</span>
+            </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#fff8e1;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #f9a825;">
+                    <div style="color:#e65100;font-size:16px;font-weight:800;margin-bottom:10px;">Nem tudo precisa ser
+                        um componente.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Devemos criar componentes para elementos
+                        repetitivos. Sempre que um elemento aparecer várias vezes, considere transformá-lo em
+                        componente.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Botões</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Cards</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Menus</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Campos de formulário</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Ícones</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Badges</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Tags</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Avatares</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Logo</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Footer</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Navbar</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#1565c0,#0288d1);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 12px;color:white;font-weight:900;font-size:15px;">2</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Capítulo 2 — Criando um Componente</span>
+            </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e3f2fd;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #1565c0;">
+                    <div style="color:#0d47a1;font-size:16px;font-weight:800;margin-bottom:10px;">Suponha que criamos um
+                        botão.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">O primeiro passo é selecionar todos os
+                        elementos que fazem parte dele. Depois utilizamos o comando Create Component.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
+                    <div
+                        style="background:#0d1b4b;border-radius:14px;padding:24px;font-family:'Courier New',monospace;font-size:13px;line-height:2;color:#c5cae9;box-shadow:0 6px 24px rgba(13,27,75,.35);text-align:center;">
+                        Create Component<br><br>
+                        Atalho:<br>
+                        Ctrl + Alt + K<br><br>
+                        macOS:<br>
+                        ⌥ Option + ⌘ Command + K
+                    </div>
+
+                    <div style="background:#e8f5e9;border-radius:12px;padding:18px;border-top:4px solid #388e3c;">
+                        <div style="color:#1b5e20;font-size:14px;font-weight:900;margin-bottom:12px;">Resultado</div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">A partir desse momento o botão passa
+                            a ser um componente.<br><br>O Figma adiciona um losango roxo indicando que aquele objeto é
+                            reutilizável.</div>
+                    </div>
+                </div>
+
+                <div
+                    style="background:#f5f7ff;border:2px dashed #90caf9;border-radius:14px;padding:40px;text-align:center;">
+                    <div style="color:#1565c0;font-size:15px;font-weight:800;margin-bottom:8px;">🖼️ Espaço para imagem
+                        — Criando componente no Figma</div>
+                    <div style="color:#546e7a;font-size:13px;">Inserir print do botão com o losango roxo de componente.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#6a1b9a,#8e24aa);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">💎</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Main Component e Instances</span> </div>
+            <div style="padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div style="background:#f3e5f5;border-radius:12px;padding:18px;border-top:4px solid #8e24aa;">
+                    <div style="color:#6a1b9a;font-size:14px;font-weight:900;margin-bottom:12px;">Main Component</div>
+                    <div style="color:#37474f;font-size:13px;line-height:1.9;">O primeiro componente criado é chamado de
+                        Main Component.<br><br>Ele é o componente principal.<br><br>Qualquer alteração realizada nele
+                        será refletida em todas as instâncias existentes no projeto.<br><br>Por isso devemos mantê-lo
+                        organizado.</div>
+                </div>
+
+                <div style="background:#e3f2fd;border-radius:12px;padding:18px;border-top:4px solid #1565c0;">
+                    <div style="color:#0d47a1;font-size:14px;font-weight:900;margin-bottom:12px;">Instances</div>
+                    <div style="color:#37474f;font-size:13px;line-height:1.9;">Quando arrastamos um componente para
+                        outra tela, criamos uma Instance.<br><br>Ela continua ligada ao componente original.<br><br>Se
+                        alterarmos cor, raio da borda, tamanho ou fonte, todas as instâncias serão atualizadas
+                        automaticamente.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#00897b,#26a69a);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 12px;color:white;font-weight:900;font-size:15px;">3</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Capítulo 3 — Auto Layout + Componentes</span>
+            </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e0f2f1;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #00897b;">
+                    <div style="color:#00695c;font-size:16px;font-weight:800;margin-bottom:10px;">Os melhores
+                        componentes utilizam Auto Layout.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Imagine um botão com o texto “Entrar”.
+                        Depois mudamos para “Criar Conta Gratuitamente”. Sem Auto Layout o botão quebra. Com Auto Layout
+                        ele aumenta automaticamente.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
+                    <div style="background:#ffebee;border-radius:12px;padding:18px;border-top:4px solid #e53935;">
+                        <div style="color:#b71c1c;font-size:14px;font-weight:900;margin-bottom:12px;">Sem Auto Layout
+                        </div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">O botão pode quebrar quando o texto
+                            aumenta.</div>
+                    </div>
+
+                    <div style="background:#e8f5e9;border-radius:12px;padding:18px;border-top:4px solid #388e3c;">
+                        <div style="color:#1b5e20;font-size:14px;font-weight:900;margin-bottom:12px;">Com Auto Layout
+                        </div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">O botão aumenta automaticamente
+                            conforme o conteúdo.</div>
+                    </div>
+                </div>
+
+                <div
+                    style="background:#f5f7ff;border:2px dashed #90caf9;border-radius:14px;padding:40px;text-align:center;">
+                    <div style="color:#1565c0;font-size:15px;font-weight:800;margin-bottom:8px;">🖼️ Espaço para imagem
+                        — Botão com Auto Layout</div>
+                    <div style="color:#546e7a;font-size:13px;">Inserir comparação entre botão com texto curto e texto
+                        longo ajustando automaticamente.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#f57f17,#f9a825);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🔘</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Estrutura de um Botão</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#fff8e1;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #f9a825;">
+                    <div style="color:#e65100;font-size:16px;font-weight:800;margin-bottom:10px;">Um botão normalmente
+                        possui texto, padding interno, raio da borda, cor de fundo e alinhamento central.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">O texto nunca deve ficar colado na borda.
+                        Utilizamos espaçamentos internos consistentes.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:14px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Vertical: 12 ou 16 px</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:14px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Horizontal: 24 ou 32 px</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:14px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Alinhamento central</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#1565c0,#0288d1);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🃏</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Criando um Card</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e3f2fd;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #1565c0;">
+                    <div style="color:#0d47a1;font-size:16px;font-weight:800;">Um Card normalmente possui imagem,
+                        título, descrição e botão.</div>
+                </div>
+
+                <div
+                    style="background:#0d1b4b;border-radius:14px;padding:24px;font-family:'Courier New',monospace;font-size:12px;line-height:2;color:#c5cae9;box-shadow:0 6px 24px rgba(13,27,75,.35);margin-bottom:18px;text-align:center;">
+                    Imagem<br>
+                    ↓<br>
+                    Título<br>
+                    ↓<br>
+                    Descrição<br>
+                    ↓<br>
+                    Botão
+                </div>
+
+                <div style="background:#e8f5e9;border-radius:12px;padding:18px;border-left:5px solid #388e3c;">
+                    <div style="color:#1b5e20;font-size:14px;font-weight:800;">Todos esses elementos devem estar dentro
+                        de um Auto Layout vertical. O próprio Card pode ser transformado em componente.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#37474f,#546e7a);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🧭</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Componentizando o Header</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#f5f7ff;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #546e7a;">
+                    <div style="color:#37474f;font-size:16px;font-weight:800;">Uma barra de navegação costuma conter
+                        Logo, Menu e Botão.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px;">
+                    <div
+                        style="background:#e3f2fd;border-radius:10px;padding:14px;color:#0d47a1;font-size:12px;font-weight:800;text-align:center;">
+                        Logo</div>
+                    <div
+                        style="background:#e8f5e9;border-radius:10px;padding:14px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                        Menu</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:14px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Botão</div>
+                </div>
+
+                <div style="background:#e0f2f1;border-radius:12px;padding:18px;border-left:5px solid #00897b;">
+                    <div style="color:#00695c;font-size:14px;font-weight:800;">Cada parte pode ser um componente
+                        individual. Depois todos eles formam um componente maior. Essa estratégia facilita alterações
+                        futuras.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#6a1b9a,#8e24aa);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 12px;color:white;font-weight:900;font-size:15px;">4</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Capítulo 4 — Variantes</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#f3e5f5;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #8e24aa;">
+                    <div style="color:#6a1b9a;font-size:16px;font-weight:800;margin-bottom:10px;">Nem sempre um
+                        componente possui apenas uma aparência.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Um botão pode existir em diferentes
+                        versões. Em vez de criar quatro componentes diferentes, utilizamos Variantes.</div>
+                </div>
+
+                <div
+                    style="background:#0d1b4b;border-radius:14px;padding:24px;font-family:'Courier New',monospace;font-size:12px;line-height:2;color:#c5cae9;box-shadow:0 6px 24px rgba(13,27,75,.35);margin-bottom:18px;">
+                    Botão<br>
+                    ├── Primário<br>
+                    ├── Secundário<br>
+                    ├── Outline<br>
+                    └── Desabilitado
+                </div>
+
+                <div style="background:#e8f5e9;border-radius:12px;padding:18px;border-left:5px solid #388e3c;">
+                    <div style="color:#1b5e20;font-size:14px;font-weight:800;">As Variantes agrupam diferentes estados
+                        do mesmo componente. Todos pertencem ao mesmo componente.</div>
+                </div>
+
+                <div
+                    style="background:#f5f7ff;border:2px dashed #90caf9;border-radius:14px;padding:40px;text-align:center;margin-top:18px;">
+                    <div style="color:#1565c0;font-size:15px;font-weight:800;margin-bottom:8px;">🖼️ Espaço para imagem
+                        — Variantes de botão</div>
+                    <div style="color:#546e7a;font-size:13px;">Inserir print do painel de variantes no Figma com
+                        Primary, Secondary, Outline e Disabled.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#c62828,#e53935);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">⚡</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Estados dos Componentes</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#ffebee;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #e53935;">
+                    <div style="color:#b71c1c;font-size:16px;font-weight:800;">Além da aparência, componentes também
+                        possuem estados.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#ffebee;border-radius:10px;padding:12px;color:#b71c1c;font-size:12px;font-weight:800;text-align:center;">
+                        Default</div>
+                    <div
+                        style="background:#ffebee;border-radius:10px;padding:12px;color:#b71c1c;font-size:12px;font-weight:800;text-align:center;">
+                        Hover</div>
+                    <div
+                        style="background:#ffebee;border-radius:10px;padding:12px;color:#b71c1c;font-size:12px;font-weight:800;text-align:center;">
+                        Pressed</div>
+                    <div
+                        style="background:#ffebee;border-radius:10px;padding:12px;color:#b71c1c;font-size:12px;font-weight:800;text-align:center;">
+                        Focused</div>
+                    <div
+                        style="background:#ffebee;border-radius:10px;padding:12px;color:#b71c1c;font-size:12px;font-weight:800;text-align:center;">
+                        Disabled</div>
+                </div>
+
+                <div
+                    style="background:#fff8e1;border-radius:12px;padding:18px;border-left:5px solid #f9a825;margin-top:18px;">
+                    <div style="color:#e65100;font-size:14px;font-weight:800;">Mesmo que não sejam utilizados nesta
+                        aula, é importante compreender que eles existem e fazem parte do Design de Interfaces.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#1565c0,#0288d1);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🏷️</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Nomeando Componentes</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e3f2fd;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #1565c0;">
+                    <div style="color:#0d47a1;font-size:16px;font-weight:800;">Evite nomes genéricos. Essa organização
+                        facilita a navegação em projetos grandes.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div style="background:#ffebee;border-radius:12px;padding:18px;border-top:4px solid #e53935;">
+                        <div style="color:#b71c1c;font-size:14px;font-weight:900;margin-bottom:12px;">Errado</div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">Rectangle 52<br>Botão Novo<br>Frame
+                            16</div>
+                    </div>
+
+                    <div style="background:#e8f5e9;border-radius:12px;padding:18px;border-top:4px solid #388e3c;">
+                        <div style="color:#1b5e20;font-size:14px;font-weight:900;margin-bottom:12px;">Correto</div>
+                        <div style="color:#37474f;font-size:13px;line-height:1.9;">
+                            Button/Primary<br>Button/Secondary<br>Card/Product<br>Card/Benefit<br>Navbar/Desktop<br>Footer/Desktop
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#37474f,#546e7a);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">📚</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Organização da Biblioteca</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#f5f7ff;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #546e7a;">
+                    <div style="color:#37474f;font-size:16px;font-weight:800;">Uma biblioteca simples pode ser
+                        organizada assim:</div>
+                </div>
+
+                <div
+                    style="background:#0d1b4b;border-radius:14px;padding:24px;font-family:'Courier New',monospace;font-size:12px;line-height:2;color:#c5cae9;box-shadow:0 6px 24px rgba(13,27,75,.35);">
+                    Componentes<br>
+                    ├── Buttons<br>
+                    ├── Cards<br>
+                    ├── Inputs<br>
+                    ├── Icons<br>
+                    ├── Navigation<br>
+                    ├── Footer<br>
+                    ├── Logo
+                </div>
+
+                <div
+                    style="background:#e0f2f1;border-radius:12px;padding:18px;border-left:5px solid #00897b;margin-top:18px;">
+                    <div style="color:#00695c;font-size:14px;font-weight:800;">Essa estrutura será utilizada ao longo de
+                        todo o projeto.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#00897b,#26a69a);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 12px;color:white;font-weight:900;font-size:15px;">5</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Capítulo 5 — Aplicando Componentes na Landing
+                    Page</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#e0f2f1;border-radius:14px;padding:22px 24px;margin-bottom:22px;border-left:5px solid #00897b;">
+                    <div style="color:#00695c;font-size:16px;font-weight:800;margin-bottom:10px;">Agora iremos
+                        transformar os elementos criados anteriormente em componentes.</div>
+                    <div style="color:#37474f;font-size:14px;line-height:1.9;">Ao finalizar, todas as seções da Landing
+                        Page deverão utilizar apenas componentes. Isso permitirá alterar rapidamente qualquer parte da
+                        interface.</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Header</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Logo</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Botão principal</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Card de benefício</div>
+                    <div
+                        style="background:#e0f2f1;border-radius:10px;padding:12px;color:#00695c;font-size:12px;font-weight:800;text-align:center;">
+                        Footer</div>
+                </div>
+
+                <div
+                    style="background:#f5f7ff;border:2px dashed #90caf9;border-radius:14px;padding:40px;text-align:center;margin-top:18px;">
+                    <div style="color:#1565c0;font-size:15px;font-weight:800;margin-bottom:8px;">🖼️ Espaço para imagem
+                        — Landing Page com componentes</div>
+                    <div style="color:#546e7a;font-size:13px;">Inserir print da Landing Page utilizando Navbar, Button,
+                        Card e Footer como componentes.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#f57f17,#f9a825);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">✅</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Boas Práticas</span> </div>
+            <div style="padding:28px 32px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Crie componentes apenas para elementos reutilizáveis.</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Utilize Auto Layout.</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Nomeie corretamente.</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Organize em páginas específicas.</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Evite componentes duplicados.</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Padronize espaçamentos.</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:12px;color:#e65100;font-size:12px;font-weight:800;">
+                        Utilize uma hierarquia lógica de nomes.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#1565c0,#0288d1);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">🧪</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Tutorial</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#0d1b4b;border-radius:14px;padding:24px;box-shadow:0 6px 24px rgba(13,27,75,.35);">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+                        <div
+                            style="background:#1565c0;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 1 — Abra a Landing Page desenvolvida nas aulas anteriores.</div>
+                        <div
+                            style="background:#4527a0;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 2 — Transforme o botão principal em componente.</div>
+                        <div
+                            style="background:#f57f17;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 3 — Crie três instâncias do botão.</div>
+                        <div
+                            style="background:#00897b;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 4 — Altere o componente principal e observe que todas as instâncias serão atualizadas.
+                        </div>
+                        <div
+                            style="background:#6a1b9a;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 5 — Transforme o Card de Benefícios em componente.</div>
+                        <div
+                            style="background:#37474f;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 6 — Crie três instâncias e altere apenas o conteúdo de cada uma.</div>
+                        <div
+                            style="background:#c62828;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 7 — Crie o componente Navbar.</div>
+                        <div
+                            style="background:#2e7d32;border-radius:8px;padding:10px 18px;color:white;font-size:12px;font-weight:700;width:80%;text-align:center;">
+                            Passo 8 — Organize todos os componentes em uma página chamada Components.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#c62828,#e53935);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">📌</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Atividade Prática</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#ffebee;border-radius:12px;padding:18px;border-left:5px solid #e53935;margin-bottom:18px;">
+                    <div style="color:#b71c1c;font-size:14px;font-weight:900;margin-bottom:8px;">Desafio</div>
+                    <div style="color:#37474f;font-size:13px;line-height:1.9;">Transformar a Landing Page criada nas
+                        aulas anteriores em um projeto baseado em componentes.</div>
+                </div>
+
+                <div
+                    style="background:#e8f5e9;border-radius:12px;padding:18px;border-left:5px solid #388e3c;margin-bottom:18px;">
+                    <div style="color:#1b5e20;font-size:14px;font-weight:900;margin-bottom:12px;">Componentes
+                        obrigatórios</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Botão Primário</div>
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Botão Secundário</div>
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Card de Benefícios</div>
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Navbar</div>
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Footer</div>
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Logo</div>
+                        <div
+                            style="background:#c8e6c9;border-radius:10px;padding:12px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                            Campo de formulário opcional</div>
+                    </div>
+                </div>
+
+                <div style="background:#fff8e1;border-radius:12px;padding:18px;border-left:5px solid #f9a825;">
+                    <div style="color:#e65100;font-size:14px;font-weight:900;margin-bottom:12px;">Regras</div>
+                    <div style="color:#37474f;font-size:13px;line-height:1.9;">Todos devem utilizar Auto Layout e
+                        nomenclatura organizada.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:#fff;border-radius:16px;padding:0;margin-bottom:22px;box-shadow:0 6px 30px rgba(21,101,192,.12);overflow:hidden;">
+            <div
+                style="background:linear-gradient(90deg,#37474f,#546e7a);padding:18px 28px;display:flex;align-items:center;gap:12px;">
+                <span
+                    style="background:rgba(255,255,255,.2);border-radius:10px;padding:6px 14px;color:white;font-weight:900;font-size:18px;">⭐</span>
+                <span style="color:#fff;font-size:17px;font-weight:800;">Desafio Extra</span> </div>
+            <div style="padding:28px 32px;">
+                <div
+                    style="background:#f5f7ff;border-radius:12px;padding:18px;border-left:5px solid #546e7a;margin-bottom:18px;">
+                    <div style="color:#37474f;font-size:14px;font-weight:900;margin-bottom:8px;">Criar variantes para o
+                        componente Button com, no mínimo, três estados visuais:</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;">
+                    <div
+                        style="background:#e3f2fd;border-radius:10px;padding:14px;color:#0d47a1;font-size:12px;font-weight:800;text-align:center;">
+                        Primary</div>
+                    <div
+                        style="background:#e8f5e9;border-radius:10px;padding:14px;color:#1b5e20;font-size:12px;font-weight:800;text-align:center;">
+                        Secondary</div>
+                    <div
+                        style="background:#fff8e1;border-radius:10px;padding:14px;color:#e65100;font-size:12px;font-weight:800;text-align:center;">
+                        Outline</div>
+                    <div
+                        style="background:#ffebee;border-radius:10px;padding:14px;color:#b71c1c;font-size:12px;font-weight:800;text-align:center;">
+                        Disabled opcional</div>
+                </div>
+
+                <div
+                    style="background:#e0f2f1;border-radius:12px;padding:18px;border-left:5px solid #00897b;margin-top:18px;">
+                    <div style="color:#00695c;font-size:14px;font-weight:800;">Opcionalmente, adicionar o estado
+                        Disabled para simular um botão desativado.</div>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background:linear-gradient(135deg,#0d1b4b 0%,#1565c0 50%,#c62828 100%);border-radius:20px;padding:36px 32px;box-shadow:0 12px 40px rgba(13,27,75,.45);position:relative;overflow:hidden;">
+            <div
+                style="position:absolute;top:-20px;right:-20px;width:150px;height:150px;background:rgba(255,255,255,.05);border-radius:50%;">
+            </div>
+            <div style="position:relative;z-index:1;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                    <span style="font-size:26px;">🏁</span>
+                    <span style="color:#fff;font-size:18px;font-weight:800;">Resumo da Aula</span>
+                </div>
+
+                <div style="background:rgba(0,0,0,.25);border-radius:12px;padding:18px 20px;margin-bottom:18px;">
+                    <div style="color:#c5cae9;font-size:13px;font-weight:700;text-align:center;line-height:2;">
+                        Nesta aula, aprendemos que componentes tornam o projeto mais profissional, reutilizável e fácil
+                        de manter. Com Main Components, Instances, Auto Layout, Variantes e uma biblioteca organizada, a
+                        Landing Page passa a ter consistência visual e estrutura semelhante aos projetos reais do
+                        mercado.
+                    </div>
+                </div>
+
+                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#ffcc80;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">🧩
+                        Componentes</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#ef9a9a;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">💎
+                        Main Component</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#a5d6a7;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">📄
+                        Instances</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#90caf9;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">📱
+                        Auto Layout</span>
+                    <span
+                        style="background:rgba(255,255,255,.15);color:#ce93d8;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.2);">⚡
+                        Variantes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
